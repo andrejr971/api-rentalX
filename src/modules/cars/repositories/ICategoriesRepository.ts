@@ -1,8 +1,8 @@
-import Category from '../model/Category';
+import Category from '../entities/Category';
 import { ICreateCategoryDTO } from './implementations/CategoriesRepository';
 
 export default interface ICategoriesRepository {
-  findByName(name: string): Category | undefined;
-  list(): Category[];
-  create(date: ICreateCategoryDTO): Category;
+  findByName(name: string): Promise<Category | undefined>;
+  list(): Promise<Category[]>;
+  create(date: ICreateCategoryDTO): Promise<Category>;
 }
