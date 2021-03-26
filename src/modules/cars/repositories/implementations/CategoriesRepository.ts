@@ -11,19 +11,9 @@ export interface ICreateCategoryDTO {
 export default class CategoriesRepository implements ICategoriesRepository {
   private ormRepository: Repository<Category>;
 
-  // private static ISTANCE: CategoriesRepository;
-
   constructor() {
     this.ormRepository = getRepository(Category);
   }
-
-  // public static getInstance(): CategoriesRepository {
-  //   if (!CategoriesRepository.ISTANCE) {
-  //     CategoriesRepository.ISTANCE = new CategoriesRepository();
-  //   }
-
-  //   return CategoriesRepository.ISTANCE;
-  // }
 
   async create({ name, description }: ICreateCategoryDTO): Promise<Category> {
     const category = this.ormRepository.create({ name, description });
