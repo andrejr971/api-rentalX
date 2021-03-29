@@ -18,6 +18,9 @@ export default class User {
   @Column()
   driver_license: string;
 
+  @Column()
+  avatar?: string;
+
   @Column({ default: false })
   admin: boolean;
 
