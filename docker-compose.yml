@@ -5,13 +5,13 @@ services:
     image: postgres
     container_name: database_ignite
     restart: always
-    ports: 
+    ports:
       - 5432:5432
-    environment: 
+    environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=ignite
       - POSTGRES_DB=rentx
-    volumes: 
+    volumes:
       - pgdata:/data/postgres
   app:
     build: .
@@ -21,6 +21,6 @@ services:
     volumes:
       - .:/usr/app
 
-volumes: 
-  pgdata: 
+volumes:
+  pgdata:
     driver: local
