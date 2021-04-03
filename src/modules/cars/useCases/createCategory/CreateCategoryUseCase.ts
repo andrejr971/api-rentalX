@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe';
 
-import AppError from '@errors/AppErrors';
-import Category from '@modules/cars/entities/Category';
+import Category from '@modules/cars/infra/typeorm/entities/Category';
+import { ICreateCategoryDTO } from '@modules/cars/infra/typeorm/repositories/CategoriesRepository';
 import ICategoriesRepository from '@modules/cars/repositories/ICategoriesRepository';
-import { ICreateCategoryDTO } from '@modules/cars/repositories/implementations/CategoriesRepository';
+import AppError from '@shared/errors/AppErrors';
 
 @injectable()
 export default class CreateCategoryUseCase {
