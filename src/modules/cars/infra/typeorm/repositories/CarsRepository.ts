@@ -35,8 +35,28 @@ export default class CarsRepository implements ICarsRepository {
     return carsQuery.getMany();
   }
 
-  async create(data: ICreateCarDTO): Promise<Car> {
-    const car = this.ormRepository.create(data);
+  async create({
+    name,
+    description,
+    category_id,
+    brand,
+    daily_rate,
+    fine_amount,
+    license_plate,
+    specifications,
+    id,
+  }: ICreateCarDTO): Promise<Car> {
+    const car = this.ormRepository.create({
+      name,
+      description,
+      category_id,
+      brand,
+      daily_rate,
+      fine_amount,
+      license_plate,
+      specifications,
+      id,
+    });
 
     await this.ormRepository.save(car);
 
@@ -45,5 +65,9 @@ export default class CarsRepository implements ICarsRepository {
 
   async findByLicensePlate(license_plate: string): Promise<Car | undefined> {
     return this.ormRepository.findOne({ where: { license_plate } });
+  }
+
+  async findById(car_id: string): Promise<Car | undefined> {
+    return this.ormRepository.findOne(car_id);
   }
 }

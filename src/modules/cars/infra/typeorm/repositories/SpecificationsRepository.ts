@@ -27,4 +27,10 @@ export default class SpecificationRepository
 
     return specification;
   }
+
+  async findByIds(ids: string[]): Promise<Specification[]> {
+    const specifications = await this.ormRepository.findByIds(ids);
+
+    return specifications;
+  }
 }
