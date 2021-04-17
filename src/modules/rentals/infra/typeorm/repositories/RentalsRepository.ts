@@ -16,6 +16,7 @@ export default class RentalsRepository implements IRentalsRepository {
     return this.ormRepository.findOne({
       where: {
         car_id,
+        end_date: null,
       },
     });
   }
@@ -24,6 +25,7 @@ export default class RentalsRepository implements IRentalsRepository {
     return this.ormRepository.findOne({
       where: {
         user_id,
+        end_date: null,
       },
     });
   }
@@ -34,5 +36,13 @@ export default class RentalsRepository implements IRentalsRepository {
     await this.ormRepository.save(rental);
 
     return rental;
+  }
+
+  async findById(id: string): Promise<Rental | undefined> {
+    return this.ormRepository.findOne(id);
+  }
+
+  async findByUserId(user_id: string): Promise<Rental[]> {
+    return this.ormRepository.find({ where: { user_id }, relations: ['car'] });
   }
 }

@@ -35,47 +35,46 @@ describe('Autenticate user', () => {
   });
 
   it('should not be able autenticate an nonexistent user', async () => {
-    expect(async () => {
-      await autenticateUserCase.execute({
+    await expect(
+      autenticateUserCase.execute({
         email: 'user@test.com',
         password: '123456',
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      }),
+    ).rejects.toBeInstanceOf(AppError);
   });
 
   it('should bot be able to autenticate with incorrect password', async () => {
-    expect(async () => {
-      const user: ICreateUserDTO = {
-        driver_license: '000123',
-        email: 'user@test.com',
-        password: '123456',
-        name: 'User Test',
-      };
+    const user: ICreateUserDTO = {
+      driver_license: '000123',
+      email: 'user@test.com',
+      password: '123456',
+      name: 'User Test',
+    };
 
-      await createUserUseCase.execute(user);
+    await createUserUseCase.execute(user);
 
-      await autenticateUserCase.execute({
+    await expect(
+      autenticateUserCase.execute({
         email: user.email,
         password: '2323232',
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      }),
+    ).rejects.toBeInstanceOf(AppError);
   });
 
   it('should bot be able to autenticate with incorrect email', async () => {
-    expect(async () => {
-      const user: ICreateUserDTO = {
-        driver_license: '000123',
-        email: 'user@test.com',
-        password: '123456',
-        name: 'User Test',
-      };
+    const user: ICreateUserDTO = {
+      driver_license: '000123',
+      email: 'user@test.com',
+      password: '123456',
+      name: 'User Test',
+    };
 
-      await createUserUseCase.execute(user);
-
-      await autenticateUserCase.execute({
+    await createUserUseCase.execute(user);
+    await expect(
+      autenticateUserCase.execute({
         email: 'test@teste.com',
         password: user.password,
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      }),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });

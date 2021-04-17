@@ -10,4 +10,5 @@ export default interface ICarsRepository {
   create(data: ICreateCarDTO): Promise<Car>;
   findByLicensePlate(license_plate: string): Promise<Car | undefined>;
   findById(car_id: string): Promise<Car | undefined>;
+  updateAvaliable(id: string, available: boolean): Promise<void>;
 }

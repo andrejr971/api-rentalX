@@ -70,4 +70,14 @@ export default class CarsRepository implements ICarsRepository {
   async findById(car_id: string): Promise<Car | undefined> {
     return this.ormRepository.findOne(car_id);
   }
+
+  async updateAvaliable(id: string, available: boolean): Promise<void> {
+    await this.ormRepository
+      .createQueryBuilder()
+      .update()
+      .set({ available })
+      .where('id = :id')
+      .setParameters({ id })
+      .execute();
+  }
 }

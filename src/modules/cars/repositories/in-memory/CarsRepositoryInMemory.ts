@@ -46,4 +46,10 @@ export default class CarsRepositoryInMemory implements ICarsRepository {
   async findById(car_id: string): Promise<Car | undefined> {
     return this.cars.find(car => car.id === car_id);
   }
+
+  async updateAvaliable(id: string, available: boolean): Promise<void> {
+    const findIndex = this.cars.findIndex(car => car.id === id);
+
+    this.cars[findIndex].available = available;
+  }
 }
