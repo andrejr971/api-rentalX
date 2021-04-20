@@ -10,8 +10,8 @@ import usersRoutes from './users.routes';
 
 const routes = Router();
 
-routes.use(autenticateRoutes);
 routes.use('/password', passwordRoutes);
+routes.use(autenticateRoutes);
 
 routes.use('/categories', categoriesRoutes);
 routes.use('/specifications', specificationRoutes);
